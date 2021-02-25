@@ -7,6 +7,7 @@ import { ChallengeBox } from "../components/ChallengeBox";
 import Head from 'next/head';
 
 import styles from '../styles/pages/Home.module.css';
+import { CountdownProvider } from "../contexts/CountdownContext";
 
 export default function Home() {
   return (
@@ -17,16 +18,19 @@ export default function Home() {
 
       <ExperienceBar />
 
-      <section>
-        <div>
-          <Profile />
-          <CompletedChallenges />
-          <Countdown />
-        </div>
-        <div>
-          <ChallengeBox />
-        </div>
-      </section>
+      {/* Como só o countdown e o challengebox vai ter que utilizar os dados do componente countdown vamos colocar o provider dele aqui para só eles ter acesso  */}
+      <CountdownProvider>
+        <section>
+          <div>
+            <Profile />
+            <CompletedChallenges />
+            <Countdown />
+          </div>
+          <div>
+            <ChallengeBox />
+          </div>
+        </section>
+      </CountdownProvider>
     </div>
   )
 }
